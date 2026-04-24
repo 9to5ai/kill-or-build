@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { questions } from "../data/questions";
+import { dimensionLabels, questions } from "../data/questions";
 import type { Answers } from "../lib/scoring";
 import { OptionButton } from "./OptionButton";
 import { ProgressBar } from "./ProgressBar";
@@ -45,7 +45,7 @@ export function Assessment({ answers, onAnswer, onComplete }: AssessmentProps) {
         <ProgressBar current={currentIndex + 1} total={questions.length} />
 
         <div className="question-card">
-          <p className="question-dimension">{currentQuestion.dimension.replace(/([A-Z])/g, " $1").trim()}</p>
+          <p className="question-dimension">{dimensionLabels[currentQuestion.dimension]}</p>
           <h1 id="question-title">{currentQuestion.text}</h1>
           <div className="options-grid" role="list" aria-label="Answer options">
             {currentQuestion.options.map((option) => (

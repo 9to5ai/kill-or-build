@@ -9,10 +9,10 @@ export function Home({ onStart }: HomeProps) {
         <div className="eyebrow">Kill or Build</div>
         <h1 id="home-title">Should this AI project exist?</h1>
         <p className="hero-copy">
-          Answer 12 questions. Get a blunt verdict. Save yourself weeks of wishful thinking.
+          Answer 12 questions. Get a blunt verdict. Decide whether to kill it, redesign it, or build it.
         </p>
         <p className="hero-subcopy">
-          A ruthless seven-minute check for AI project ideas: kill it, redesign it, or build it.
+          A ruthless seven-minute check for AI project ideas. For AI automations, copilots, and agents.
         </p>
         <div className="hero-actions">
           <button className="primary-button" onClick={onStart}>

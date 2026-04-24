@@ -1,4 +1,6 @@
+import { useMemo, useState } from "react";
 import { dimensionLabels } from "../data/questions";
+import { generateMegaPrompt } from "../lib/prompt";
 import { calculateResult, type Answers, type Dimension } from "../lib/scoring";
 import { VerdictBadge } from "./VerdictBadge";
 
@@ -23,6 +25,18 @@ const verdictHeadlines = {
 
 export function Results({ answers, onRestart }: ResultsProps) {
   const result = calculateResult(answers);
+  const megaPrompt = useMemo(() => generateMegaPrompt(result), [result]);
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
+
+  async function handleCopyPrompt() {
+    try {
+      await navigator.clipboard.writeText(megaPrompt);
+      setCopyState("copied");
+      window.setTimeout(() => setCopyState("idle"), 1800);
+    } catch {
+      setCopyState("failed");
+    }
+  }
 
   return (
     <main className="page results-page">
@@ -73,6 +87,27 @@ export function Results({ answers, onRestart }: ResultsProps) {
             </ol>
           </section>
         </div>
+
+        <section className="panel prompt-panel" aria-labelledby="prompt-title">
+          <div className="prompt-header">
+            <div>
+              <h2 id="prompt-title">Your next prompt</h2>
+              <p>Paste this into an AI assistant to turn your verdict into a concrete action plan.</p>
+            </div>
+            <div className="copy-cluster">
+              <button className="secondary-button copy-button" type="button" onClick={() => void handleCopyPrompt()}>
+                Copy prompt
+              </button>
+              <span className={`copy-status ${copyState !== "idle" ? "visible" : ""}`} aria-live="polite">
+                {copyState === "copied" ? "Copied." : copyState === "failed" ? "Copy failed." : ""}
+              </span>
+            </div>
+          </div>
+          <pre className="prompt-card"><code>{megaPrompt}</code></pre>
+          <p className="prompt-note">
+            This prompt is generated from your assessment result. Edit it with your project context before using.
+          </p>
+        </section>
 
         <div className="restart-row">
           <button className="primary-button" onClick={onRestart}>Start over</button>

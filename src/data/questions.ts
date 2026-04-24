@@ -19,7 +19,7 @@ export interface Question {
 
 export const dimensionLabels: Record<Dimension, string> = {
   problemStrength: "Problem Strength",
-  workflowReality: "Workflow Reality",
+  workflowReality: "Operating Reality",
   economicValue: "Economic Value",
   controlRisk: "Control & Risk",
   executionReadiness: "Execution Readiness",
@@ -62,7 +62,7 @@ export const questions = [
   {
     id: "q4",
     dimension: "workflowReality",
-    text: "Is the workflow clearly defined from start to finish?",
+    text: "Is the task environment clearly defined?",
     options: [
       { label: "No", value: 1 },
       { label: "Partially", value: 2 },
@@ -73,7 +73,7 @@ export const questions = [
   {
     id: "q5",
     dimension: "workflowReality",
-    text: "Are decision points within the workflow clearly identified?",
+    text: "Are the key decisions, exceptions, and handoffs clearly identified?",
     options: [
       { label: "No", value: 1 },
       { label: "Somewhat", value: 2 },
@@ -139,7 +139,7 @@ export const questions = [
   {
     id: "q11",
     dimension: "executionReadiness",
-    text: "Is the required data accessible and usable?",
+    text: "Are the required data, tools, or systems accessible?",
     options: [
       { label: "No", value: 1 },
       { label: "Difficult", value: 2 },

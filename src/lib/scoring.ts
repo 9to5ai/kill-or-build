@@ -31,18 +31,18 @@ const dimensionWeights: Record<Dimension, number> = {
 
 const issueCopy: Record<Dimension, string> = {
   problemStrength: "Problem signal is weak — prove it happens often and hurts enough before you build.",
-  workflowReality: "Workflow is not clear enough — AI will amplify a fuzzy process, not fix it.",
+  workflowReality: "Operating reality is fuzzy — the task environment, exceptions, or handoffs are not clear enough yet.",
   economicValue: "Economic value is unclear — estimate current time, cost, or error rate first.",
   controlRisk: "Risk controls are weak — review, override, and audit paths need to be explicit.",
-  executionReadiness: "Execution readiness is shaky — ownership, data, or timing will probably stall it.",
+  executionReadiness: "Execution readiness is shaky — ownership, data, tools, or timing will probably stall it.",
 };
 
 const recommendationCopy: Record<Dimension, string> = {
   problemStrength: "Do not build yet. First, prove the problem happens often enough and hurts enough.",
-  workflowReality: "Map the workflow from trigger to final outcome. If the path is fuzzy, AI will amplify the mess.",
+  workflowReality: "Map the task loop from trigger to final outcome. If the operating path is fuzzy, AI will amplify the mess.",
   economicValue: "Estimate current time, cost, or error rate before building. If you cannot measure the pain, you cannot defend the project.",
   controlRisk: "Add human review, override, and auditability before automation. This should be redesigned before implementation.",
-  executionReadiness: "Assign one accountable owner and confirm data access before any prototype work starts.",
+  executionReadiness: "Assign one accountable owner and confirm data, tool, and system access before any prototype work starts.",
 };
 
 const verdictSummaries: Record<Verdict, string> = {
@@ -139,7 +139,7 @@ export function getRecommendations(
   }
 
   if ((answers.q10 ?? 4) < 3 || (answers.q11 ?? 4) < 3) {
-    specific.push("Name one accountable owner and confirm the required data is usable before starting a prototype.");
+    specific.push("Name one accountable owner and confirm the required data, tools, or systems are usable before starting a prototype.");
   }
 
   if (verdict === "build") {
